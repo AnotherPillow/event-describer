@@ -211,11 +211,15 @@ export default function describeEvent(parsedContentPatcher: {Format?: string, Ch
                 
                 for (const unparsedPrecondition of preconditions) {
                     const parsedPrecondition = parseTokens(unparsedPrecondition, TOKENS)
+                    console.log({parsedPrecondition})
                     const queryNameRaw = parsedPrecondition.split(' ')[0]
                     const queryNameSemi = rewriteQueryName(queryNameRaw)
+                    console.log({queryNameSemi})
                     const isNegated = queryNameSemi.startsWith('!')
                     const queryName = isNegated ? queryNameSemi.slice(1) : queryNameSemi
-                    const queryValue = parsedPrecondition.slice(queryNameSemi.length).trimStart()
+                    console.log({queryName})
+                    const queryValue = parsedPrecondition.slice(queryNameRaw.length).trimStart()
+                    console.log({queryValue})
 
                     if (QUERIES.has(queryName)) {
                         const queryHuman = QUERIES.get(queryName)!(queryValue, isNegated)
