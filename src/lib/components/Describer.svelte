@@ -35,7 +35,7 @@
                 parsed = JSON5.parse(inputData)
             } catch (e) {console.log(e)}
             if (!parsed || (typeof parsed == 'object' && !parsed.Changes)) 
-                return (outputData = 'failed to parse json (is it a content patcher file?)')
+                return (outputData = 'failed to parse json (is it a content patcher file?) (make sure to press the button to do the things!)')
             
             const described = describeEvent(parsed, outputFormat, modID)
             
@@ -49,9 +49,9 @@
 
 <div class="w-full flex justify-center h-9/10 my-2">
     {#if !inputData || !inputData.startsWith('{')}
-        <p class="text-red-700">please provide input json file</p>
+        <p class="text-destructive">please provide input json file</p>
     {:else if !modID}
-        <p class="text-red-700">please provide your mods unique id</p>
+        <p class="text-destructive">please provide your mods unique id</p>
     {:else}
         <Textarea class="mx-2 rounded-[8px] font-mono" value={outputData}/>
     {/if}

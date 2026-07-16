@@ -20,16 +20,16 @@
     
 </script>
 
-<div class="flex min-h-screen w-full flex-col bg-zinc-600 text-center">
+<div class="flex min-h-screen w-full flex-col bg-background text-foreground text-center p-4 gap-4">
     <h1 class="text-xl font-bold">event describer</h1>
-    <p>event go in and then you get text for wiki or whatever</p>
+    <p class="text-muted-foreground">event go in and then you get text for wiki or whatever</p>
 
-    <div class="absolute top-2 right-2">
+    <div class="absolute top-2 right-2 cursor-pointer">
         <ModeToggle />
     </div>
 
-    <div class="flex flex-1 w-full gap-4">
-        <div class="flex-1 bg-zinc-700 rounded-[8px]">
+    <div class="flex flex-1 w-full gap-4 flex-col [@media(min-width:800px)]:flex-row">
+        <div class="flex-1 bg-card text-card-foreground border border-border rounded-lg p-4 flex flex-col gap-4">
             <h2 class="text-lg">event json here</h2>
             
             <div class="w-full flex justify-center my-2 flex-row gap-4">
@@ -57,7 +57,7 @@
                 <Textarea class="mx-2 rounded-[8px] font-mono" bind:value={inputData} placeholder="file containing event changes. Must have a Changes key"/>
             </div>
         </div>
-        <div class="flex-1 bg-zinc-700 rounded-[8px]">
+        <div class="flex-1 bg-card text-card-foreground border border-border rounded-lg p-4 flex flex-col gap-4">
             <h2 class="text-lg">whatever formatted here</h2>
             <Describer {inputData} {outputFormat} {modID} {submitTrigger}/>
         </div>
