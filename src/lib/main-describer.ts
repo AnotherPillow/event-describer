@@ -199,12 +199,12 @@ export default function describeEvent(parsedContentPatcher: {Format?: string, Ch
             const eventId = parseTokens(keyParts[0], TOKENS)
             const preconditions = isForked ? null : keyParts.slice(1)
 
-            output += `${F.Header(1, `${eventId}${isForked ? ' (fork!)' : ''}`)}\n\n`
+            output += `${F.Header(2, `${eventId}${isForked ? ' (fork!)' : ''}`)}\n\n`
             
-            output += `${F.Header(2, `Location`)}\n\n`
+            output += `${F.Header(3, `Location`)}\n\n`
             output += `Takes place in: ${F.Code(parseTokens(location, TOKENS))}\n\n`
 
-            output += `${F.Header(2, `Requirements`)}\n\n`
+            output += `${F.Header(3, `Requirements`)}\n\n`
             if (preconditions == null) output += `none! it's a fork of another event, so that has to call it\n\n`
             else {
                 let humanArray: string[] = []
