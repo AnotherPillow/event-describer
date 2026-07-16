@@ -165,6 +165,11 @@ const rewriteQueryName = (name: string) => {
     }[name] ?? name
 }
 
+// find a key matching the given key in the map ignoring case
+const mCase = (map: Map<string, any>, key: string) => 
+    map.keys().find(k => k.toUpperCase() == key.toUpperCase())
+
+
 export default function describeEvent(parsedContentPatcher: {Format?: string, Changes: any[], ConfigSchema?: any, DynamicTokens?: any}, mode: OutputFormat, uniqueid: string): string {
     const TOKENS = new Map<RegExp, Replacer>([
         [/{{ModId}}/g, () => uniqueid],
@@ -216,9 +221,11 @@ export default function describeEvent(parsedContentPatcher: {Format?: string, Ch
                     const isNegated = queryNameSemi.startsWith('!')
                     const queryName = isNegated ? queryNameSemi.slice(1) : queryNameSemi
                     const queryValue = parsedPrecondition.slice(queryNameRaw.length).trimStart()
+                    console.log({parsedPrecondition, queryNameRaw, queryNameSemi, queryName, isNegated, queryValue})
 
-                    if (QUERIES.has(queryName)) {
-                        const queryHuman = QUERIES.get(queryName)!(queryValue, isNegated)
+                    let casedQueryName: string | undefined = ''
+                    if (casedQueryName = mCase(QUERIES, queryName)) {
+                        const queryHuman = QUERIES.get(casedQueryName)!(queryValue, isNegated)
                         humanArray.push(queryHuman)
                     } else {
                         humanArray.push(parsedPrecondition)
