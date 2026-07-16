@@ -93,7 +93,7 @@ const QUERIES = new Map<string, (value: string, isNegated: boolean) => string>([
         const pairs = chunk(value.split(' ').filter(x => x.trim()), 2)
         return `The current player is${ngt(isNegated)} standing on the tile ${pairs.join(', ')}.`
     }],
-    ['CommunityCenterOrWarehouseDone', (value: string, isNegated: boolean) => `The host player has${ngt(isNegated)} completed the Community Centre/Joja Warehoused`],
+    ['CommunityCenterOrWarehouseDone', (value: string, isNegated: boolean) => `The host player has${ngt(isNegated)} completed the Community Centre/Joja Warehouse`],
     ['DaysPlayed', (value: string, isNegated: boolean) => `The host player has${ngt(isNegated)} played at least ${value} days.`],
     ['HostMail', (value: string, isNegated: boolean) => `The host player has${ngt(isNegated)} received the mail ${value}.`],
     ['HostOrLocalMail', (value: string, isNegated: boolean) => `The host player or the current player has${ngt(isNegated)} received the mail ${value}.`],
