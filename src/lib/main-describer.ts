@@ -166,8 +166,19 @@ const rewriteQueryName = (name: string) => {
 }
 
 export default function describeEvent(parsedContentPatcher: {Format?: string, Changes: any[], ConfigSchema?: any, DynamicTokens?: any}, mode: OutputFormat, uniqueid: string): string {
-    const TOKENS = new Map<RegExp, () => string>([
+    const TOKENS = new Map<RegExp, Replacer>([
         [/{{ModId}}/g, () => uniqueid],
+        [/{{Range:\s*?(\d+),\s*?(\d+)\s*?(\|step=(\d+))?}}/g, (fullMatch: string, capture1: string, capture2: string, fullStepCapture?: string, stepCount?: string) => {
+            console.log(fullMatch)
+            const min = parseInt(capture1)
+            const max = parseInt(capture2)
+            const step = stepCount ? parseInt(stepCount) : 1
+            
+            let arr = [];
+            for (let i = min; i < max + 1; i += step) { arr.push(i) }
+
+            return arr.join(', ')
+        }],
     ]);
 
     const F = new Formatted(mode)
