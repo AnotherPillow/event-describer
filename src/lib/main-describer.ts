@@ -194,7 +194,7 @@ export default function describeEvent(parsedContentPatcher: {Format?: string, Ch
             output += `Takes place in: ${F.Code(parseTokens(location, TOKENS))}\n\n`
 
             output += `${F.Header(2, `Requirements`)}\n\n`
-            if (preconditions == null) output += `none! it's a fork of another event, so that has to call it`
+            if (preconditions == null) output += `none! it's a fork of another event, so that has to call it\n\n`
             else {
                 let humanArray: string[] = []
                 
