@@ -32,7 +32,11 @@
         untrack(() => {
             let parsed;
             try {
-                parsed = JSON5.parse(inputData)
+                parsed = JSON5.parse(
+                    inputData
+                        .replaceAll(/\s+\/\/[^\n]+/g, "") // remove // comments
+                        .replaceAll("\n", "") // remove newlines so that multi-line strings can work (newtonsoft accepts broken anywhere, json5 needs a backslash before them)
+                )
             } catch (e) {console.log(e)}
             if (!parsed || (typeof parsed == 'object' && !parsed.Changes)) 
                 return (outputData = 'failed to parse json (is it a content patcher file?) (make sure to press the button to do the things!)')
