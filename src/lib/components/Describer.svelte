@@ -34,7 +34,8 @@
             try {
                 parsed = JSON5.parse(
                     inputData
-                        .replaceAll(/\s+\/\/[^\n]+/g, "") // remove // comments
+                        .replaceAll("\r\n", "\n") // just dont make me bother with them
+                        .replaceAll(/\s+\/\/[^\n]*?\n/g, "") // remove // comments (and their next newline)
                         .replaceAll("\n", "") // remove newlines so that multi-line strings can work (newtonsoft accepts broken anywhere, json5 needs a backslash before them)
                 )
             } catch (e) {console.log(e)}
