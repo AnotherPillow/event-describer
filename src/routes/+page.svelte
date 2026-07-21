@@ -22,7 +22,7 @@
 
 <div class="flex min-h-screen w-full flex-col bg-background text-foreground text-center p-4 gap-4">
     <h1 class="text-xl font-bold">event describer</h1>
-    <p class="text-muted-foreground">event go in and then you get text for wiki or whatever</p>
+    <p class="text-muted-foreground">event content patcher json goes in and automatically generates ~decent documentation for your bbcode nexus description / wikitext wiki / markdown readme</p>
 
     <div class="absolute top-2 right-2 cursor-pointer">
         <ModeToggle />
